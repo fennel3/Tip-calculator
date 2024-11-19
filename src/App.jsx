@@ -4,13 +4,10 @@ import Button from "./components/Button/Button";
 import Greybox from "./components/Greybox-input";
 import ResetButton from "./components/Reset-button";
 
-
 function App() {
   const [inputValue, setInputValue] = useState("");
 
   const [discountAmount, setDiscountAmount] = useState(0); //makes a variable called discountAmount and sets it to the amount.
-
-  const[resetAmount, setResetAmount] = useState(0)
 
   function handleClick5percent() {
     setDiscountAmount(0.05);
@@ -38,17 +35,12 @@ function App() {
 
   function handleReset() {
     setDiscountAmount(0);
-    setInputValue('');
-    
+    setInputValue("")
   }
 
-  let bill = Number(inputValue);
-  let withTip = discountAmount;
-  let totalTip = bill * withTip;
-  let total = bill + totalTip 
-  
-  console.log(resetAmount)
-
+  let bill = Number(inputValue) || 0;
+  let totalTip = bill * discountAmount;
+  let total = bill + totalTip;
 
   return (
     <body className="bg-cyan-200">
@@ -61,7 +53,7 @@ function App() {
           <div class="bg-slate-300 w-2/5 h-4/5 rounded-lg">
             <div class="m-5">
               bill
-              <Greybox handleChange={handleChange} />
+              <Greybox value={inputValue} handleChange={handleChange} />
             </div>
             <div class="flex-wrap ml-3">
               <div class="w-5/6 h-1/6 ml-2">select tip boxes</div>
@@ -108,7 +100,7 @@ function App() {
               <div class="text-2xl float-end">${total}</div>
             </div>
             <div>
-              <ResetButton handleReset={handleReset} /> 
+              <ResetButton handleReset={handleReset} />
             </div>
           </div>
         </div>
